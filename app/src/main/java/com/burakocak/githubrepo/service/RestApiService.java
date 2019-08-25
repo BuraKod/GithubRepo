@@ -11,6 +11,6 @@ import retrofit2.http.Path;
 public interface RestApiService {
 
     @GET("/users/{user}/repos")
-    Call<List<GitHubRepo>> userRepos(@Path("user") String user);
+    Call<List<GitHubRepo>> getUserRepos(@Path("user") String user);
 
 }
