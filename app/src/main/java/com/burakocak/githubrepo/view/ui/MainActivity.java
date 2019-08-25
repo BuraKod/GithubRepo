@@ -100,4 +100,8 @@ public class MainActivity extends BaseActivity implements OnRecyclerItemClickLis
 
     }
 
+    @Override
+    public void onBackPressed() {
+        showExitApplicationDialog("Exit Application!!","Do you really want to Exit?");
+    }
 }
