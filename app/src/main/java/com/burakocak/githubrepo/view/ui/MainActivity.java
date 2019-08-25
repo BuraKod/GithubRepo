@@ -1,8 +1,10 @@
 package com.burakocak.githubrepo.view.ui;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -21,6 +23,8 @@ import com.burakocak.githubrepo.viewmodel.MainViewModel;
 
 import java.util.List;
 import java.util.Objects;
+
+import static com.burakocak.githubrepo.utils.Constants.UPDATE_FAVORITE;
 
 public class MainActivity extends BaseActivity implements OnRecyclerItemClickListener{
 
@@ -44,9 +48,6 @@ public class MainActivity extends BaseActivity implements OnRecyclerItemClickLis
             }
         });
 
-
-
-
     }
 
     private void init(){
@@ -63,6 +64,9 @@ public class MainActivity extends BaseActivity implements OnRecyclerItemClickLis
         if (eventbusObject.getKey() == Constants.RESULT_NO) {
             runOnUiThread(() -> showErrorSneaker("User Error!", "don't match github username"));
         }
+        if (eventbusObject.getKey()== Constants.UPDATE_FAVORITE) {
+            repoListAdapter.notifyDataSetChanged();
+        }
     }
 
 
@@ -75,7 +79,7 @@ public class MainActivity extends BaseActivity implements OnRecyclerItemClickLis
         int favoriteResult = viewModel.isFavoriteItem(favoriteId);
         if (favoriteResult == 1) {
             viewModel.deleteFavorite(favoriteId);
-            repoListAdapter.setFavoriteList();
+            repoListAdapter.notifyDataSetChanged();
             showSuccessSneaker("Favorite!!", "Remove your from favorite");
         } else {
             Favorite favorite = new Favorite();
@@ -83,13 +87,20 @@ public class MainActivity extends BaseActivity implements OnRecyclerItemClickLis
             favorite.setId(Long.parseLong(gitHubRepo.getId()));
             favorite.setFavorite(true);
             viewModel.insertFavorite(favorite);
-            repoListAdapter.setFavoriteList();
+            repoListAdapter.notifyDataSetChanged();
             showSuccessSneaker("Favorite!!", "Added your from favorite");
         }
     }
 
     @Override
-    public void onDetailClick(Object object) {
+    public void onDetailClick(Object object, boolean state) {
+
+        GitHubRepo gitHubRepo = (GitHubRepo) object;
+        Intent intent = new Intent(MainActivity.this,RepoDetailsActivity.class);
+        intent.putExtra("Data", gitHubRepo);
+        intent.putExtra("state",state);
+        startActivity(intent);
 
     }
+    
 }

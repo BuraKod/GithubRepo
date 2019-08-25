@@ -10,5 +10,5 @@ public interface OnRecyclerItemClickListener {
     */
 
     void onFavoriteClick(Object object);
-    void onDetailClick(Object object);
+    void onDetailClick(Object object,boolean state);
 }
