@@ -3,7 +3,6 @@ package com.burakocak.githubrepo.view.ui;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,7 +10,7 @@ import android.view.MenuItem;
 
 import com.burakocak.githubrepo.R;
 import com.burakocak.githubrepo.databinding.ActivityRepoDetailsBinding;
-import com.burakocak.githubrepo.model.EventbusObject;
+import com.burakocak.githubrepo.model.EventBusObject;
 import com.burakocak.githubrepo.model.Favorite;
 import com.burakocak.githubrepo.model.GitHubRepo;
 import com.burakocak.githubrepo.view.base.BaseActivity;
@@ -21,7 +20,6 @@ import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 
-import static com.burakocak.githubrepo.utils.Constants.OWNER_NAME;
 import static com.burakocak.githubrepo.utils.Constants.UPDATE_FAVORITE;
 
 public class RepoDetailsActivity extends BaseActivity {
@@ -65,7 +63,7 @@ public class RepoDetailsActivity extends BaseActivity {
 
             }
         });
-        binding.tvRepoName.setText(gitHubRepo.getOwner().login);
+        binding.tvRepoName.setText(gitHubRepo.getName());
         binding.tvOwnerName.setText(gitHubRepo.getOwner().login);
         binding.tvProjectFullName.setText(gitHubRepo.getFullName());
         binding.tvLanguageName.setText(gitHubRepo.getLanguage());
@@ -94,7 +92,8 @@ public class RepoDetailsActivity extends BaseActivity {
                 favoriteState = false;
                 viewModel.deleteFavorite(Long.parseLong(gitHubRepo.getId()));
                 item.setIcon(R.drawable.ic_favorite_border);
-                EventBus.getDefault().post(new EventbusObject(UPDATE_FAVORITE));
+                showSuccessSneaker("Favorite!!", "Remove your from favorite");
+                EventBus.getDefault().post(new EventBusObject(UPDATE_FAVORITE));
             }else {
                 favoriteState = true;
                 favorite.setFavorite(true);
@@ -102,7 +101,8 @@ public class RepoDetailsActivity extends BaseActivity {
                 favorite.setId(Long.parseLong(gitHubRepo.getId()));
                 viewModel.insertFavorite(favorite);
                 item.setIcon(R.drawable.ic_favorite);
-                EventBus.getDefault().post(new EventbusObject(UPDATE_FAVORITE));
+                showSuccessSneaker("Favorite!!", "Added your from favorite");
+                EventBus.getDefault().post(new EventBusObject(UPDATE_FAVORITE));
             }
         }
         return super.onOptionsItemSelected(item);
@@ -110,7 +110,7 @@ public class RepoDetailsActivity extends BaseActivity {
     }
 
     @Override
-    public void onCustomEvent(EventbusObject eventbusObject) {
+    public void onCustomEvent(EventBusObject eventbusObject) {
 
     }
 }

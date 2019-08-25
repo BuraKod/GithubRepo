@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.burakocak.githubrepo.model.EventbusObject;
+import com.burakocak.githubrepo.model.EventBusObject;
 import com.burakocak.githubrepo.utils.Constants;
 import com.burakocak.githubrepo.utils.Utils;
 import com.irozon.sneaker.Sneaker;
@@ -22,7 +22,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    public abstract void onCustomEvent(EventbusObject eventbusObject);
+    public abstract void onCustomEvent(EventBusObject eventbusObject);
 
     private ProgressDialog mProgressDialog;
 
@@ -96,7 +96,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Subscribe
     public void onEvent(Object object) {
-        EventbusObject eventbusObject = (EventbusObject) object;
+        EventBusObject eventbusObject = (EventBusObject) object;
         if (eventbusObject.getKey() == Constants.SHOW_LOADING) {
             showLoading();
         } else if (eventbusObject.getKey() == Constants.HIDE_LOADING) {

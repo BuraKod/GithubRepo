@@ -1,15 +1,15 @@
 package com.burakocak.githubrepo.model;
 
-public class EventbusObject {
+public class EventBusObject {
     private int key;
     private Object object;
 
-    public EventbusObject(int key, Object object) {
+    public EventBusObject(int key, Object object) {
         this.key = key;
         this.object = object;
     }
 
-    public EventbusObject(int key) {
+    public EventBusObject(int key) {
         this(key, null);
     }
 

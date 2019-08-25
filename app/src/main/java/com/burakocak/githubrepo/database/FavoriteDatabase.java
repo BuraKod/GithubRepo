@@ -8,8 +8,9 @@ import androidx.room.RoomDatabase;
 
 import com.burakocak.githubrepo.database.dao.FavoriteDao;
 import com.burakocak.githubrepo.model.Favorite;
+import com.burakocak.githubrepo.utils.Constants;
 
-@Database(entities = {Favorite.class}, version = 1 ,exportSchema = false)
+@Database(entities = {Favorite.class}, version = 1, exportSchema = false)
 public abstract class FavoriteDatabase extends RoomDatabase {
 
     public abstract FavoriteDao favoriteDao();
@@ -18,10 +19,10 @@ public abstract class FavoriteDatabase extends RoomDatabase {
 
     public static FavoriteDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (FavoriteDatabase.class)  {
+            synchronized (FavoriteDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(
-                            context,FavoriteDatabase.class,"FAVORITE_DATABASE")
+                            context, FavoriteDatabase.class, Constants.DATABASE_NAME)
                             .fallbackToDestructiveMigration()
                             .build();
                 }

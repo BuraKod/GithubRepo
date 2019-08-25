@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 
 import com.burakocak.githubrepo.R;
 
+
 public class Utils {
 
     public static ProgressDialog showLoadingDialog(Context context) {
@@ -22,6 +23,5 @@ public class Utils {
         progressDialog.setCanceledOnTouchOutside(false);
         return progressDialog;
     }
-
 
 }

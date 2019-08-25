@@ -4,7 +4,6 @@ package com.burakocak.githubrepo.view.ui;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -12,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.burakocak.githubrepo.R;
 import com.burakocak.githubrepo.databinding.ActivityMainBinding;
-import com.burakocak.githubrepo.model.EventbusObject;
+import com.burakocak.githubrepo.model.EventBusObject;
 import com.burakocak.githubrepo.model.Favorite;
 import com.burakocak.githubrepo.model.GitHubRepo;
 import com.burakocak.githubrepo.utils.Constants;
@@ -23,8 +22,6 @@ import com.burakocak.githubrepo.viewmodel.MainViewModel;
 
 import java.util.List;
 import java.util.Objects;
-
-import static com.burakocak.githubrepo.utils.Constants.UPDATE_FAVORITE;
 
 public class MainActivity extends BaseActivity implements OnRecyclerItemClickListener{
 
@@ -60,7 +57,7 @@ public class MainActivity extends BaseActivity implements OnRecyclerItemClickLis
     }
 
     @Override
-    public void onCustomEvent(EventbusObject eventbusObject) {
+    public void onCustomEvent(EventBusObject eventbusObject) {
         if (eventbusObject.getKey() == Constants.RESULT_NO) {
             runOnUiThread(() -> showErrorSneaker("User Error!", "don't match github username"));
         }

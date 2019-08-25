@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.burakocak.githubrepo.R;
-import com.burakocak.githubrepo.model.Favorite;
 import com.burakocak.githubrepo.model.GitHubRepo;
 import com.burakocak.githubrepo.view.callback.OnRecyclerItemClickListener;
 import com.burakocak.githubrepo.viewmodel.MainViewModel;
@@ -21,7 +20,6 @@ import java.util.List;
 
 public class RepoListAdapter extends RecyclerView.Adapter<RepoListAdapter.RepoListHolder> {
     private List<GitHubRepo> gitHubRepoList;
-    private List<Favorite> favoriteList;
     private LayoutInflater layoutInflater;
     private MainViewModel mainViewModel;
     private Context context;
@@ -29,7 +27,6 @@ public class RepoListAdapter extends RecyclerView.Adapter<RepoListAdapter.RepoLi
 
     public RepoListAdapter(Context context,OnRecyclerItemClickListener listener, MainViewModel viewModel) {
         gitHubRepoList = new ArrayList<>();
-        favoriteList = new ArrayList<>();
         this.mainViewModel = viewModel;
         this.context = context;
         this.onRecyclerItemClickListener = listener;
@@ -47,7 +44,6 @@ public class RepoListAdapter extends RecyclerView.Adapter<RepoListAdapter.RepoLi
     public void onBindViewHolder(@NonNull RepoListHolder holder, int position) {
         GitHubRepo gitHubRepoCurrent = gitHubRepoList.get(position);
         holder.isFavorite = mainViewModel.isFavoriteItem(Long.parseLong(gitHubRepoList.get(position).getId()));
-        //Favorite favoriteCurrent = favoriteList.get(gitHubRepoList);
         holder.tvRepoTitle.setText(gitHubRepoCurrent.getName());
 
         holder.ivFavorite.setOnClickListener(v -> {
@@ -84,10 +80,6 @@ public class RepoListAdapter extends RecyclerView.Adapter<RepoListAdapter.RepoLi
         notifyDataSetChanged();
     }
 
-    public void setFavoriteList() {
-
-        notifyDataSetChanged();
-    }
 
     public class RepoListHolder extends RecyclerView.ViewHolder {
         private TextView tvRepoTitle;

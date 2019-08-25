@@ -30,12 +30,21 @@ public class GitHubRepo implements Serializable {
     private String language;
 
 
-    public GitHubRepo() {}
+    public GitHubRepo() {
+    }
 
 
-    public String getId()       { return idRep; }
-    public String getName()     { return name; }
-    public String getFullName() { return fullName; }
+    public String getId() {
+        return idRep;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
 
     public String getIdRep() {
         return idRep;

@@ -20,7 +20,7 @@ public class Favorite {
     private String username;
 
     @NonNull
-    @ColumnInfo(name ="isCompleted")
+    @ColumnInfo(name = "isCompleted")
     private boolean isFavorite;
 
     public boolean isFavorite() {

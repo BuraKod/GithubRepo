@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.burakocak.githubrepo.database.FavoriteDatabase;
 import com.burakocak.githubrepo.database.dao.FavoriteDao;
-import com.burakocak.githubrepo.model.EventbusObject;
+import com.burakocak.githubrepo.model.EventBusObject;
 import com.burakocak.githubrepo.model.Favorite;
 import com.burakocak.githubrepo.model.GitHubRepo;
 import com.burakocak.githubrepo.service.RestApiBuilder;
@@ -47,10 +47,10 @@ public class MainViewModel extends AndroidViewModel {
     public void fetchRepos(Editable text) {
         if (text.toString().isEmpty()) {
             userRepos.setValue(null);
-            EventBus.getDefault().post(new EventbusObject(Constants.RESULT_NO));
+            EventBus.getDefault().post(new EventBusObject(Constants.RESULT_NO));
             return;
         }
-        EventBus.getDefault().post(new EventbusObject(Constants.SHOW_LOADING));
+        EventBus.getDefault().post(new EventBusObject(Constants.SHOW_LOADING));
         RestApiService apiService = new RestApiBuilder().getService();
         Call<List<GitHubRepo>> repoListCall = apiService.getUserRepos(text.toString());
         repoListCall.enqueue(new Callback<List<GitHubRepo>>() {
@@ -59,18 +59,18 @@ public class MainViewModel extends AndroidViewModel {
             public void onResponse(Call<List<GitHubRepo>> call, Response<List<GitHubRepo>> response) {
                 if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
                     userRepos.setValue(response.body());
-                    EventBus.getDefault().post(new EventbusObject(Constants.HIDE_LOADING));
+                    EventBus.getDefault().post(new EventBusObject(Constants.HIDE_LOADING));
 
                 } else {
                     userRepos.setValue(null);
-                    EventBus.getDefault().post(new EventbusObject(Constants.HIDE_LOADING));
-                    EventBus.getDefault().post(new EventbusObject(Constants.RESULT_NO));
+                    EventBus.getDefault().post(new EventBusObject(Constants.HIDE_LOADING));
+                    EventBus.getDefault().post(new EventBusObject(Constants.RESULT_NO));
                 }
             }
 
             @Override
             public void onFailure(Call<List<GitHubRepo>> call, Throwable t) {
-                EventBus.getDefault().post(new EventbusObject(Constants.HIDE_LOADING));
+                EventBus.getDefault().post(new EventBusObject(Constants.HIDE_LOADING));
             }
         });
     }
