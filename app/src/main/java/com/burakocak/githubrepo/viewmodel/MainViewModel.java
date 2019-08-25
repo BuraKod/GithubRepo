@@ -1,7 +1,6 @@
 package com.burakocak.githubrepo.viewmodel;
 
 import android.app.Application;
-import android.os.AsyncTask;
 import android.text.Editable;
 
 import androidx.annotation.NonNull;
@@ -53,7 +52,7 @@ public class MainViewModel extends AndroidViewModel {
         }
         EventBus.getDefault().post(new EventbusObject(Constants.SHOW_LOADING));
         RestApiService apiService = new RestApiBuilder().getService();
-        Call<List<GitHubRepo>> repoListCall = apiService.userRepos(text.toString());
+        Call<List<GitHubRepo>> repoListCall = apiService.getUserRepos(text.toString());
         repoListCall.enqueue(new Callback<List<GitHubRepo>>() {
 
             @Override
@@ -75,6 +74,7 @@ public class MainViewModel extends AndroidViewModel {
             }
         });
     }
+
 
     public void deleteFavorite(long id) {
         executorService.execute(() -> favoriteDao.deleteByFavoriteId(id));
