@@ -12,9 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.burakocak.todolist.model.EventbusObject;
-import com.burakocak.todolist.utils.Constants;
-import com.burakocak.todolist.utils.Utils;
+import com.burakocak.githubrepo.model.EventbusObject;
+import com.burakocak.githubrepo.utils.Constants;
+import com.burakocak.githubrepo.utils.Utils;
 import com.irozon.sneaker.Sneaker;
 
 import org.greenrobot.eventbus.EventBus;
