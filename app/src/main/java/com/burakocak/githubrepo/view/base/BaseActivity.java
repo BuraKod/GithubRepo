@@ -48,12 +48,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
-    public void hideStatusBar() {
-        View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
-    }
-
     public void showErrorSneaker(String title , String message) {
         Sneaker.with(this)
                 .setTitle(title)
@@ -74,8 +68,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle(title)
                 .setMessage(message)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
