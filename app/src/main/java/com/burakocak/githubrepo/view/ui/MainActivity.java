@@ -102,5 +102,5 @@ public class MainActivity extends BaseActivity implements OnRecyclerItemClickLis
         startActivity(intent);
 
     }
-    
+
 }
