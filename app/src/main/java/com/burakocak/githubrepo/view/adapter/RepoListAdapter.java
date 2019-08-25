@@ -56,6 +56,16 @@ public class RepoListAdapter extends RecyclerView.Adapter<RepoListAdapter.RepoLi
             }
         });
 
+        holder.tvRepoTitle.setOnClickListener(v -> {
+            if (onRecyclerItemClickListener != null) {
+                boolean state = false;
+                if(holder.isFavorite == 1)  state = true;
+                onRecyclerItemClickListener.onDetailClick(gitHubRepoList.get(position),state);
+            }
+        });
+
+
+
         if (holder.isFavorite == 1) {
             holder.ivFavorite.setImageResource(R.drawable.ic_favorite);
         } else {
